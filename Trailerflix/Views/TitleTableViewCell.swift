@@ -29,7 +29,7 @@ class TitleTableViewCell: UITableViewCell {
         let button = UIButton()
         let image = UIImage(systemName: "play.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
         button.setImage(image, for: .normal)
-        button.tintColor = .white
+        button.tintColor = .label
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

@@ -16,10 +16,11 @@ class HeroHeaderUIView: UIView {
     private var title: Title?
     weak var delegate: HeroHeaderViewDelegate?
     
+    private let gradientLayer = CAGradientLayer()
+    
     private let playButton: UIButton = {
         let playButton = UIButton()
         playButton.setTitle("Play", for: .normal)
-        playButton.layer.borderColor = UIColor.white.cgColor
         playButton.layer.borderWidth = 1
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.layer.cornerRadius = 5
@@ -30,7 +31,6 @@ class HeroHeaderUIView: UIView {
     private let downloadButton: UIButton = {
        let downloadButton = UIButton()
         downloadButton.setTitle("Download", for: .normal)
-        downloadButton.layer.borderColor = UIColor.white.cgColor
         downloadButton.layer.borderWidth = 1
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
         downloadButton.layer.cornerRadius = 5
@@ -49,7 +49,8 @@ class HeroHeaderUIView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(heroImageView)
-        addGradient()
+        gradientLayer.frame = bounds
+        layer.addSublayer(gradientLayer)
         addSubview(playButton)
         addSubview(downloadButton)
         applyConstraints()
@@ -64,14 +65,11 @@ class HeroHeaderUIView: UIView {
         heroImageView.frame = bounds
     }
     
-    func addGradient() {
-        let gradientLayer = CAGradientLayer()
+    func configureGradient() {
         gradientLayer.colors = [
             UIColor.clear.cgColor,
             UIColor.systemBackground.cgColor
         ]
-        gradientLayer.frame = bounds
-        layer.addSublayer(gradientLayer)
     }
     
     func applyConstraints() {
@@ -119,5 +117,14 @@ class HeroHeaderUIView: UIView {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
+        playButton.setTitleColor(.label, for: .normal)
+        playButton.layer.borderColor = UIColor.label.cgColor
+        downloadButton.setTitleColor(.label, for: .normal)
+        downloadButton.layer.borderColor = UIColor.label.cgColor
+        configureGradient()
     }
 }

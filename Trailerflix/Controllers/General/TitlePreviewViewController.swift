@@ -32,7 +32,7 @@ class TitlePreviewViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .red
         button.setTitle("Download", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.label, for: .normal)
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(didTapDownloadButton), for: .touchUpInside)
         return button
@@ -40,6 +40,8 @@ class TitlePreviewViewController: UIViewController {
     
     private let webView: WKWebView = {
         let webView = WKWebView()
+        webView.isOpaque = false
+        webView.backgroundColor = .systemBackground
         webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
