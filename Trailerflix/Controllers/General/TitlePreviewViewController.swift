@@ -56,6 +56,8 @@ class TitlePreviewViewController: UIViewController {
         view.addSubview(downloadButton)
         
         configureConstraints()
+        
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: 0)
     }
     
     func configureConstraints() {
