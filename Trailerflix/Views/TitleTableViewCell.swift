@@ -22,6 +22,7 @@ class TitleTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 5
         return label
     }()
     
@@ -57,13 +58,13 @@ class TitleTableViewCell: UITableViewCell {
         
         let titleLabelConstraints = [
             titleLabel.leadingAnchor.constraint(equalTo: titlePosterUIImageView.trailingAnchor, constant: 20),
-            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -46)
         ]
         
         let playButtonConstraints = [
-            playTitleButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            playTitleButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             playTitleButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            
         ]
         
         NSLayoutConstraint.activate(titlesPosterUIImageViewConstraints)
